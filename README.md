@@ -43,6 +43,7 @@ jobs:
 
         # Create torrents first
       - name: Create torrents
+        if: startsWith(github.ref, 'refs/tags/')
         uses: devopsx/action-torrent@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -52,6 +53,7 @@ jobs:
 
         # And then upload torrents together with corresponding assets
       - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -92,6 +94,7 @@ jobs:
 
         # Create a release first
       - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -103,6 +106,7 @@ jobs:
 
         # Download release assets, create and upload a torrent file for each one
       - name: Release torrents
+        if: startsWith(github.ref, 'refs/tags/')
         uses: devopsx/action-torrent@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
